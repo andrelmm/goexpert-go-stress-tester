@@ -12,9 +12,18 @@ Make sure you have Docker installed on your machine.
 
 Run the following command in your terminal:
 
+Creating the Docker image:
+
+```bash
+docker build -t loadtester .        
+```
+
+Running the Docker container:
 ```bash
 docker run loadtester --url=http://example.com --requests=1000 --concurrency=10
 ```
+
+
 Replace "http://example.com" with the URL of the service you want to test. 
 "--requests" is the total number of requests to be made and --concurrency is the number of simultaneous calls.
 
