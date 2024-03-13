@@ -81,9 +81,9 @@ func makeRequest(url string, requests int) Result {
 	start := time.Now()
 	for i := 0; i < requests; i++ {
 		resp, err := http.Get(url)
+
 		if err != nil {
 			fmt.Printf("Erro ao realizar request: %v\n", err)
-			continue
 		}
 		defer resp.Body.Close()
 
@@ -91,6 +91,9 @@ func makeRequest(url string, requests int) Result {
 		if resp.StatusCode == http.StatusOK {
 			result.SuccessfulRequests++
 		} else {
+			if result.StatusCodes == nil {
+				result.StatusCodes = make(map[int]int)
+			}
 			result.StatusCodes[resp.StatusCode]++
 		}
 	}
